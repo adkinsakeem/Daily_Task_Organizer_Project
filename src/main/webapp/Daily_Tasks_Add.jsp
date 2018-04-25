@@ -27,7 +27,7 @@ Test <%=dateNumOK %>
 
 <center>
 <h1>ADD A DAILY TASK</h1><BR>
-<form method="get" action="/Daily_Task_Organizer/checkValue">
+<form method="post" action="/Daily_Task_Organizer/checkValue">
 <h3>Title</h3>
 <input type="text" maxlength="50" name="TaskTitle" size="40">
 <br><br>

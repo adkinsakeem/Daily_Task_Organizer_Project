@@ -1,12 +1,17 @@
 package org.Tasks.Daily_Task_Organizer;
 
 import java.io.IOException;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class AddTaskServletCheck
@@ -27,6 +32,9 @@ public class AddTaskServletCheck extends HttpServlet {
 	Boolean dateNumOK = true;
 	Boolean dateRangeOK = true;
 	String TPriority;
+	
+	String TTime;
+	String TDate;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -50,16 +58,18 @@ public class AddTaskServletCheck extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println("Test02");
 		addVariablesFromJSP(request, response);
 		//checkInputs();
-		if(timeNumOK == false || dateNumOK == false || timeRangeOK == false || dateRangeOK == false) {
+	//	if(timeNumOK == false || dateNumOK == false || timeRangeOK == false || dateRangeOK == false) {
+			System.out.println("Test03");
 			setReqAtt(request);
 			request.setAttribute("dateNumOk", "dateNumOK");
 			request.getRequestDispatcher("/Daily_Tasks_Add.jsp").forward(request, response);
-		}else {
+//		}else {
+			Add_To_Database.Open_Local_SQL1_Database(TTitle, TDescription, TPriority, TTime, TDate);
 			
-			
-		}
+//		}
 
 	}
 	
@@ -82,13 +92,36 @@ public class AddTaskServletCheck extends HttpServlet {
 	
 	
 	protected void checkInputs() {
+		int tempHour;
+		int tempMinute;
+		int tempSecond;
+		int tempMonth;
+		int tempDay;
+		int tempYear;
+		
+		
 		if((THour.matches("-?\\d+(\\.\\d+)?")) && 
 				(TMinute.matches("-?\\d+(\\.\\d+)?")) && 
 				(TSecond.matches("-?\\d+(\\.\\d+)?"))){
 			
+			tempHour = Integer.parseInt(THour);
+			tempMinute = Integer.parseInt(TMinute);
+			tempSecond = Integer.parseInt(TSecond);
+			
+			if((tempHour > 0 && tempHour <13) && (tempMinute >= 0 && tempMinute < 61) && (tempSecond >= 0 && tempSecond < 61)) {
+				
+				 TTime = (THour + ":" + TMinute + ":" + TSecond) ;
+				
+			}else {
+				timeRangeOK = false;
+			}
+			
 		}else{
 			if(THour == "" && TMinute == "" && TSecond == ""){
+				 LocalTime CTime = LocalTime.now();
+				 TTime = CTime.toString();
 				timeNumOK = true;
+				timeRangeOK = true;
 			}else{
 			timeNumOK = false;
 
@@ -100,8 +133,28 @@ public class AddTaskServletCheck extends HttpServlet {
 				(TDay.matches("-?\\d+(\\.\\d+)?")) && 
 				(TYear.matches("-?\\d+(\\.\\d+)?"))){
 			
+			
+			tempMonth = Integer.parseInt(TMonth);
+			tempDay = Integer.parseInt(TDay);
+			tempYear = Integer.parseInt(TYear);
+			
+			if((tempMonth > 0 && tempMonth <13) && (tempDay > 0 && tempDay < 31) && (tempYear >= 2018)) {
+				
+
+					TDate = (TMonth + "/" + TDay + "/" + TYear);
+
+			}else {
+				timeRangeOK = false;
+			}
+			
 		}else{
+			
 			if(TMonth == "" && TDay == "" && TYear == ""){
+
+				Date CDate = new Date();
+			TDate = CDate.toString();
+			
+			dateRangeOK = true;
 			dateNumOK = true;
 			}else{
 			dateNumOK = false;
