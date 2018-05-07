@@ -10,10 +10,11 @@ public class Add_To_Database extends AddTaskServletCheck{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	static String server = "jdbc:sqlserver://localhost:3306;dailyTasks";
+	//static String server = "jdbc:sqlserver://localhost:3306;dailyTasks";
+	static String server = "jdbc:mysql://localhost:3306/dailyTasks?verifyServerCertificate=false&useSSL=true";
 	static String server2 = "jdbc:mysql://localhost/test";
-	static String password = "Akira214";
-	static String PCName = "LAPTOP-QP5643IQ";
+	static String password = "";
+	static String PCName = "root";
 
 	String databaseName = "STORESQL";
 	
@@ -24,8 +25,11 @@ public class Add_To_Database extends AddTaskServletCheck{
 
 	public static void Open_Local_SQL1_Database(String TTitle, String TDescription, String TPriority, String TTime, String TDate) {
 		// TODO Auto-generated constructor stub
+		System.out.println("Test08.1");
 		try {
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); 
+			System.out.println("Test08.2");
+			Class.forName("com.mysql.cj.jdbc.Driver"); 
+			System.out.println("Test08.3");
 			Connection con = DriverManager.getConnection(server,PCName,password);
 			PreparedStatement statement = (PreparedStatement) con.prepareStatement
 					("INSERT INTO Daily_Tasks_01(?,?,?)VALUES(?,?,?)");

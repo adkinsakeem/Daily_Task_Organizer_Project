@@ -33,7 +33,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Program Files/Java/jdk1.8.0_161/jre/lib/jstl-1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/MySQL/mysql-connector-java-8.0.11/mysql-connector-java-8.0.11.jar" sourcepath="C:/Program Files/MySQL/mysql-connector-java-8.0.11"/>
 	<classpathentry kind="lib" path="C:/Program Files/Microsoft JDBC DRIVER 6.0 for SQL Server/sqljdbc_6.0/enu/jre8/sqljdbc42.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Apache Software Foundation/Tomcat 8.5/lib/mysql-connector-java-8.0.11.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/MySQL/mysql-connector-java-8.0.11/mysql-connector-java-8.0.11.jar" sourcepath="C:/Program Files/MySQL/mysql-connector-java-8.0.11"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
