@@ -37,16 +37,16 @@ Test <%=dateNumOK %>
 <br><br>
 <h3>Priority</h3>
 <select name="TaskPriority">
-    <option value="T1">1</option>
-    <option value="T2">2</option>
-    <option value="T3">3</option>
-    <option value="T4">4</option>
-    <option value="T5">5</option>
-    <option value="T6">6</option>
-    <option value="T7">7</option>
-    <option value="T8">8</option>
-    <option value="T9">9</option>
-    <option value="T10">10</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
   </select><br><br>
 <h3>When Does Task Need Be Done</h3>
 <% if(dateNumOK != null){

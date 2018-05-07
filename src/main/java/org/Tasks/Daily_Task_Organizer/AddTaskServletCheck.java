@@ -60,14 +60,29 @@ public class AddTaskServletCheck extends HttpServlet {
 		// TODO Auto-generated method stub
 		System.out.println("Test02");
 		addVariablesFromJSP(request, response);
-		//checkInputs();
+		checkInputs();
 	//	if(timeNumOK == false || dateNumOK == false || timeRangeOK == false || dateRangeOK == false) {
 			System.out.println("Test03");
 			setReqAtt(request);
+			System.out.println("Test04");
 			request.setAttribute("dateNumOk", "dateNumOK");
+			System.out.println("Test05");
 			request.getRequestDispatcher("/Daily_Tasks_Add.jsp").forward(request, response);
-//		}else {
+			System.out.println("Test06");
+System.out.println("TTitle " + TTitle);
+			System.out.println("TTDescription " + TDescription);
+			System.out.println("TPriority " + TPriority);
+			System.out.println("THour " + THour);
+			System.out.println("TMinute " + TMinute);
+			System.out.println("TSecond " + TSecond);
+			System.out.println("TMonth " + TMonth);
+			System.out.println("TDay " + TDay);
+			System.out.println("TYear " + TYear);
+			System.out.println("TTime " + TTime);
+			System.out.println("TDate " + TDate);
+
 			Add_To_Database.Open_Local_SQL1_Database(TTitle, TDescription, TPriority, TTime, TDate);
+			System.out.println("Test08");
 			
 //		}
 
@@ -108,7 +123,7 @@ public class AddTaskServletCheck extends HttpServlet {
 			tempMinute = Integer.parseInt(TMinute);
 			tempSecond = Integer.parseInt(TSecond);
 			
-			if((tempHour > 0 && tempHour <13) && (tempMinute >= 0 && tempMinute < 61) && (tempSecond >= 0 && tempSecond < 61)) {
+			if((tempHour > 0 && tempHour <13) && (tempMinute >= 0 && tempMinute < 60) && (tempSecond >= 0 && tempSecond < 61)) {
 				
 				 TTime = (THour + ":" + TMinute + ":" + TSecond) ;
 				
