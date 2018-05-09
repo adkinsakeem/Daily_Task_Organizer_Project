@@ -2,9 +2,6 @@ package org.Tasks.Daily_Task_Organizer;
 
 import java.io.IOException;
 import java.util.Date;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 
 import javax.servlet.ServletException;
@@ -23,7 +20,7 @@ public class AddTaskServletCheck extends HttpServlet {
 	String TDescription;
 	String THour;
 	String TMinute;
-	String TSecond;
+	String TSecond = "00";
 	String TMonth;
 	String TDay;
 	String TYear;
@@ -42,14 +39,9 @@ public class AddTaskServletCheck extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	/*	// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		HttpSession session = request.getSession();
-		session.setAttribute("dateNumOk", "dateNumOK1");
-		//request.setAttribute("dateNumOk", "dateNumOK1");
-		System.out.println("test2" + dateNumOK);
-		getServletConfig().getServletContext().getRequestDispatcher("/Daily_Tasks_Add.jsp").forward(request, response);
-		*/
+	
 	
 	}
 
@@ -58,31 +50,14 @@ public class AddTaskServletCheck extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("Test02");
 		addVariablesFromJSP(request, response);
 		checkInputs();
-	//	if(timeNumOK == false || dateNumOK == false || timeRangeOK == false || dateRangeOK == false) {
-			System.out.println("Test03");
 			setReqAtt(request);
-			System.out.println("Test04");
 			request.setAttribute("dateNumOk", "dateNumOK");
-			System.out.println("Test05");
 			request.getRequestDispatcher("/Daily_Tasks_Add.jsp").forward(request, response);
-			System.out.println("Test06");
-System.out.println("TTitle " + TTitle);
-			System.out.println("TTDescription " + TDescription);
-			System.out.println("TPriority " + TPriority);
-			System.out.println("THour " + THour);
-			System.out.println("TMinute " + TMinute);
-			System.out.println("TSecond " + TSecond);
-			System.out.println("TMonth " + TMonth);
-			System.out.println("TDay " + TDay);
-			System.out.println("TYear " + TYear);
-			System.out.println("TTime " + TTime);
-			System.out.println("TDate " + TDate);
+
 
 			Add_To_Database.Open_Local_SQL1_Database(TTitle, TDescription, TPriority, TTime, TDate);
-			System.out.println("Test08");
 			
 //		}
 
@@ -94,7 +69,7 @@ System.out.println("TTitle " + TTitle);
 		request.setAttribute("TasDescription", TDescription);
 		request.setAttribute("TaskHour", THour);
 		request.setAttribute("TaskMinute", TMinute);
-		request.setAttribute("TaskSecond", TSecond);
+		//request.setAttribute("TaskSecond", TSecond);
 		request.setAttribute("TaskDay", TDay);
 		request.setAttribute("TaskMonth", TMonth);
 		request.setAttribute("TaskYear", TYear);
@@ -186,7 +161,7 @@ System.out.println("TTitle " + TTitle);
 		TDescription = request.getParameter("TaskDescrption"); 
 		THour = request.getParameter("TaskHour"); 
 		TMinute = request.getParameter("TaskMinute"); 
-		TSecond = request.getParameter("TaskSecond"); 
+		//TSecond = request.getParameter("TaskSecond"); 
 		TMonth = request.getParameter("TaskMonth"); 
 		TDay = request.getParameter("TaskDay"); 
 		TYear = request.getParameter("TaskYear"); 

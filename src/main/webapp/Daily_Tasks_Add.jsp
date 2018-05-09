@@ -57,6 +57,7 @@ if (dateNumOK == "false") { %>
 <div><b><font color="red">- Date Is Out Of Range</font></b></div><br>
 <% } }%>
 MM&nbsp;&nbsp; / &nbsp;&nbsp;  DD  &nbsp;&nbsp;  /  &nbsp;&nbsp;YYYY<br>
+Use Military Time
 <input type="text" maxlength="2" name="TaskMonth" size="2">/
 <input type="text" maxlength="2" name="TaskDay" size="2">/
 <input type="text" maxlength="4" name="TaskYear" size="4">
@@ -69,8 +70,7 @@ MM&nbsp;&nbsp; / &nbsp;&nbsp;  DD  &nbsp;&nbsp;  /  &nbsp;&nbsp;YYYY<br>
 <% } %>
 HH &nbsp; :  &nbsp;  MM  &nbsp; : &nbsp; SS&nbsp;<br>
 <input type="text" maxlength="2" name="TaskHour" size="2">:
-<input type="text" maxlength="2" name="TaskMinute" size="2">:
-<input type="text" maxlength="2" name="TaskSecond" size="2">
+<input type="text" maxlength="2" name="TaskMinute" size="2">
 <br><br><br>
  <INPUT TYPE="SUBMIT" NAME="submit" VALUE="Submit">
 &nbsp;&nbsp;&nbsp;
