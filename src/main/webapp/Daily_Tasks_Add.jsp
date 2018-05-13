@@ -8,35 +8,105 @@
 <title>Add A Daily Task </title>
 </head>
 <body>
-${dateNumOK}
+
 <%
-Boolean timeNumOK = true;
-Boolean timeRangeOK = true;
-//Boolean dateNumOK = true;
-Boolean dateRangeOK = true;
-String dateNumOK = "";
-if(request.getAttribute("dateNumOK") != null){
-dateNumOK = request.getAttribute("dateNumOK").toString(); 
-//String dateNumOK =  (String)request.getAttribute("dateNumOK"); 
+Boolean titleLengthOK  = true;
+
+
+
+String TTitle = (String)request.getAttribute("TTitle");
+String TDescription = (String)request.getAttribute("TDescription");
+String TPriority = (String)request.getAttribute("TPriority");
+String TMonth = (String)request.getAttribute("TMonth");
+String TDay = (String)request.getAttribute("TDay");
+String TYear = (String)request.getAttribute("TYear");
+String THour = (String)request.getAttribute("THour");
+String TMinute = (String)request.getAttribute("TMinute");
+
+
+if(TTitle == null){
+TTitle = "";
 }
 
-System.out.println(dateNumOK);
+if(TDescription == null){
+TDescription = "";
+}
+
+if(TPriority == null){
+TPriority = "";
+}
+
+if(TMonth == null){
+TMonth = "";
+}
+
+if(TDay == null){
+TDay = "";
+}
+
+if(TYear == null){
+TYear = "";
+}
+
+if(THour == null){
+THour = "";
+}
+
+if(TMinute == null){
+TMinute = "";
+}
+
 
 %>
-Test <%=dateNumOK %>
+
+
 
 <center>
 <h1>ADD A DAILY TASK</h1><BR>
 <form method="post" action="/Daily_Task_Organizer/checkValue">
 <h3>Title</h3>
-<input type="text" maxlength="50" name="TaskTitle" size="40">
-<br><br>
+<input type="text" maxlength="50" name="TaskTitle" value="<%=TTitle%>" size="40">
+<br>
+
+
+<font color = "Red">
+<%
+titleLengthOK = (Boolean)request.getAttribute("titleLengthOK");
+
+if(titleLengthOK!=null){
+if(titleLengthOK == false){
+out.println("Insufficient Amount of Characters in Title");
+}
+}
+%>
+</font>
+
+
+<br>
 <h3>Task Description</h3>
 <textarea name= "TaskDescrption" rows="4" cols="150">
+<%=TDescription%>
 </textarea>
-<br><br>
+<br>
+<font color = "Red">
+<%
+Boolean descLengthOK = (Boolean)request.getAttribute("descLengthOK");
+if(descLengthOK!=null){
+if(descLengthOK == false){
+out.println("Insufficient Amount of Characters in Description");
+}
+}
+%>
+</font>
+
+
+
+<br>
 <h3>Priority</h3>
-<select name="TaskPriority">
+
+<select name="TPriority">
+
+	<option value="blank"> </option>
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
@@ -47,41 +117,76 @@ Test <%=dateNumOK %>
     <option value="8">8</option>
     <option value="9">9</option>
     <option value="10">10</option>
-  </select><br><br>
+  </select>
+  <font color = "Red">
+  <br>
+<%
+
+Boolean priorityNumOK = (Boolean)request.getAttribute("priorityNumOK");
+
+if(priorityNumOK!=null){
+if(priorityNumOK == false){
+out.println("You Must Enter A Priority For Your Task");
+}
+}
+%>
+</font>
+  
+
+  <br>
 <h3>When Does Task Need Be Done</h3>
-<% if(dateNumOK != null){
-if (dateNumOK == "false") { %>
-<div><b><font color="red">- Dates Must Be A Number</font></b></div><br>
-<% } %>
-<% if (dateRangeOK == false) { %>
-<div><b><font color="red">- Date Is Out Of Range</font></b></div><br>
-<% } }%>
+
 MM&nbsp;&nbsp; / &nbsp;&nbsp;  DD  &nbsp;&nbsp;  /  &nbsp;&nbsp;YYYY<br>
-Use Military Time
-<input type="text" maxlength="2" name="TaskMonth" size="2">/
-<input type="text" maxlength="2" name="TaskDay" size="2">/
-<input type="text" maxlength="4" name="TaskYear" size="4">
+<input type="text" maxlength="2" name="TaskMonth" value="<%=TMonth%>" size="2">/
+<input type="text" maxlength="2" name="TaskDay" value="<%=TDay%>" size="2">/
+<input type="text" maxlength="4" name="TaskYear" value="<%=TYear%>" size="4">
+<br>
+
+<font color = "Red">
+<%
+
+Boolean dateNumOK = (Boolean)request.getAttribute("dateNumOK");
+Boolean dateRangeOK = (Boolean)request.getAttribute("dateRangeOK");
+if(dateNumOK!=null){
+if(dateNumOK == false){
+out.println("Dates Entered Must Be A Number");
+}else if(dateRangeOK == false){
+out.println("Dates Are Out Of Range");
+}
+}
+%>
+</font>
+
+
 <br><br>
-<% if (timeNumOK == false) { %>
-<div><b><font color="red">- Times Must Be A Number</font></b></div><br>
-<% } %>
-<% if (timeRangeOK == false) { %>
-<div><b><font color="red">- Time Is Out Of Range</font></b></div><br>
-<% } %>
-HH &nbsp; :  &nbsp;  MM  &nbsp; : &nbsp; SS&nbsp;<br>
-<input type="text" maxlength="2" name="TaskHour" size="2">:
-<input type="text" maxlength="2" name="TaskMinute" size="2">
+
+<h4>Use Military Time</h4>
+&nbsp; HH &nbsp; :  &nbsp;  MM  &nbsp;<br>
+<input type="text" maxlength="2" name="TaskHour" value="<%=THour%>" size="2">:
+<input type="text" maxlength="2" name="TaskMinute" value="<%=TMinute%>" size="2">
+<br>
+  <font color = "Red">
+<%
+Boolean timeNumOK = (Boolean)request.getAttribute("timeNumOK");
+Boolean timeRangeOK = (Boolean)request.getAttribute("timeRangeOK");
+if(timeNumOK!=null){
+if(timeNumOK == false){
+out.println("Times Entered Must Be A Number");
+}else if(timeRangeOK == false){
+out.println("Times Are Out Of Range");
+
+}
+}
+%>
+</font>
 <br><br><br>
  <INPUT TYPE="SUBMIT" NAME="submit" VALUE="Submit">
 &nbsp;&nbsp;&nbsp;
-  <INPUT TYPE="SUBMIT" NAME="cancel" VALUE="Cancel">
-  
-  <%--
-  <c:set var="numberAsString">${TaskHour}</c:set>
-<c:if test ="${numberAsString.matches('[0-9]+')}">
-    It's a number!
-</c:if>
---%>
+  <INPUT TYPE="BUTTON" NAME="cancel" VALUE="Cancel"  ONCLICK ="javascript:window.location='http://localhost:8080/Daily_Task_Organizer/index.jsp	';" >
+
+
+
+
 
 </form>
 </center>

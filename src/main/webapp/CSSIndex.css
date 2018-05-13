@@ -1,0 +1,30 @@
+@charset "ISO-8859-1";
+
+
+p.Title {
+	font-family: verdana;
+     font-size: 24px;
+}
+
+
+p.Body {
+	font-family: verdana;
+     font-size: 24px;
+}
+
+
+.button {
+  padding: 15px 25px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: "black";
+  background-color: #FFFFFF;
+  border-style: solid;
+  border-radius: 5px;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: #F9F9F9}
+

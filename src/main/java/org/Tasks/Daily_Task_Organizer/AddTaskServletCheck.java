@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.time.LocalTime;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,10 +29,13 @@ public class AddTaskServletCheck extends HttpServlet {
 	Boolean timeRangeOK = true;
 	Boolean dateNumOK = true;
 	Boolean dateRangeOK = true;
-	String TPriority;
+	Boolean priorityNumOK = true;
+	String TPriority = "1";
 	
 	String TTime;
 	String TDate;
+	Boolean titleLengthOK = true;
+	Boolean descLengthOK = true;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -50,33 +54,48 @@ public class AddTaskServletCheck extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println("before" + priorityNumOK);
 		addVariablesFromJSP(request, response);
+		
 		checkInputs();
 			setReqAtt(request);
-			request.setAttribute("dateNumOk", "dateNumOK");
-			request.getRequestDispatcher("/Daily_Tasks_Add.jsp").forward(request, response);
-
-
-			Add_To_Database.Open_Local_SQL1_Database(TTitle, TDescription, TPriority, TTime, TDate);
+			System.out.println("Test 1");
+			//request.setAttribute("test", false);
 			
-//		}
+			//request.getRequestDispatcher("/Daily_Tasks_Add.jsp").forward(request, response);
+			System.out.println("after" + priorityNumOK);
+			System.out.println("Priority =" + TPriority);
+			if(timeNumOK == false || timeRangeOK == false || dateNumOK == false || dateRangeOK == false 
+					|| titleLengthOK == false || descLengthOK == false || priorityNumOK == false) {
+				System.out.println("Test 2");
+					
+			RequestDispatcher RequetsDispatcherObj =request.getRequestDispatcher("/Daily_Tasks_Add.jsp");
+			RequetsDispatcherObj.forward(request, response);
+			}else {
+				System.out.println("Test 3");
+			Add_To_Database.Open_Local_SQL1_Database(TTitle, TDescription, TPriority, TTime, TDate, request, response);
+			
+	}
 
 	}
 	
 	
-	protected void setReqAtt(HttpServletRequest request) {
-		request.setAttribute("TaskTitle", TTitle);
-		request.setAttribute("TasDescription", TDescription);
-		request.setAttribute("TaskHour", THour);
-		request.setAttribute("TaskMinute", TMinute);
-		//request.setAttribute("TaskSecond", TSecond);
-		request.setAttribute("TaskDay", TDay);
-		request.setAttribute("TaskMonth", TMonth);
-		request.setAttribute("TaskYear", TYear);
-		request.setAttribute("timeNumOk", timeNumOK);
-		request.setAttribute("timeRangeOk", timeRangeOK);
-		request.setAttribute("dateNumOk", dateNumOK);
-		request.setAttribute("dateRangeOk", dateRangeOK);
+	public void setReqAtt(HttpServletRequest request) {
+		request.setAttribute("TTitle", TTitle);
+		request.setAttribute("TDescription", TDescription);
+		request.setAttribute("THour", THour);
+		request.setAttribute("TMinute", TMinute);
+		request.setAttribute("TPriority", TPriority);
+		request.setAttribute("TDay", TDay);
+		request.setAttribute("TMonth", TMonth);
+		request.setAttribute("TYear", TYear);
+		request.setAttribute("timeNumOK", timeNumOK);
+		request.setAttribute("timeRangeOK", timeRangeOK);
+		request.setAttribute("dateNumOK", dateNumOK);
+		request.setAttribute("dateRangeOK", dateRangeOK);
+		request.setAttribute("titleLengthOK", titleLengthOK);
+		request.setAttribute("descLengthOK", descLengthOK);
+		request.setAttribute("priorityNumOK", priorityNumOK);
 		
 	}
 	
@@ -98,7 +117,7 @@ public class AddTaskServletCheck extends HttpServlet {
 			tempMinute = Integer.parseInt(TMinute);
 			tempSecond = Integer.parseInt(TSecond);
 			
-			if((tempHour > 0 && tempHour <13) && (tempMinute >= 0 && tempMinute < 60) && (tempSecond >= 0 && tempSecond < 61)) {
+			if((tempHour > 0 && tempHour < 24) && (tempMinute >= 0 && tempMinute < 60) && (tempSecond >= 0 && tempSecond < 61)) {
 				
 				 TTime = (THour + ":" + TMinute + ":" + TSecond) ;
 				
@@ -108,8 +127,8 @@ public class AddTaskServletCheck extends HttpServlet {
 			
 		}else{
 			if(THour == "" && TMinute == "" && TSecond == ""){
-				 LocalTime CTime = LocalTime.now();
-				 TTime = CTime.toString();
+				 //LocalTime CTime = LocalTime.now();
+				 TTime = "23:59:59";
 				timeNumOK = true;
 				timeRangeOK = true;
 			}else{
@@ -127,14 +146,14 @@ public class AddTaskServletCheck extends HttpServlet {
 			tempMonth = Integer.parseInt(TMonth);
 			tempDay = Integer.parseInt(TDay);
 			tempYear = Integer.parseInt(TYear);
-			
-			if((tempMonth > 0 && tempMonth <13) && (tempDay > 0 && tempDay < 31) && (tempYear >= 2018)) {
+			if((tempMonth > 0 && tempMonth < 13) && (tempDay > 0 && tempDay < 31) && (tempYear >= 2018)) {
 				
 
 					TDate = (TMonth + "/" + TDay + "/" + TYear);
+					
 
 			}else {
-				timeRangeOK = false;
+				dateRangeOK = false;
 			}
 			
 		}else{
@@ -152,7 +171,23 @@ public class AddTaskServletCheck extends HttpServlet {
 		}
 
 		}
+		if(TTitle.length() <=4) {
+			titleLengthOK = false;
+		}else {
+			titleLengthOK = true;
+		}
 		
+		if(TDescription.length() <=4) {
+			descLengthOK = false;
+		}else {
+			descLengthOK = true;
+		}
+		
+		if (TPriority == "" || TPriority == null || TPriority == " " || TPriority.equals("blank")) {
+			priorityNumOK = false;
+		}else {
+			priorityNumOK = true;
+		}
 	}
 	
 	
@@ -165,11 +200,11 @@ public class AddTaskServletCheck extends HttpServlet {
 		TMonth = request.getParameter("TaskMonth"); 
 		TDay = request.getParameter("TaskDay"); 
 		TYear = request.getParameter("TaskYear"); 
-		TPriority = request.getParameter("TaskPriority"); 
-		timeNumOK = Boolean.valueOf(request.getParameter("timeNumOK")); 
-		timeRangeOK = Boolean.valueOf(request.getParameter("timeRangeOK"));
-		dateNumOK = Boolean.valueOf(request.getParameter("dateNumOK"));
-		dateRangeOK = Boolean.valueOf(request.getParameter("dateNumOK"));
+		TPriority = request.getParameter("TPriority"); 
+		//timeNumOK = Boolean.valueOf(request.getParameter("timeNumOK")); 
+		//timeRangeOK = Boolean.valueOf(request.getParameter("timeRangeOK"));
+		//dateNumOK = Boolean.valueOf(request.getParameter("dateNumOK"));
+		//dateRangeOK = Boolean.valueOf(request.getParameter("dateNumOK"));
 		
 		
 	}
