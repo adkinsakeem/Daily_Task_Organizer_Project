@@ -47,7 +47,10 @@ public class Task_Object {
 	     currentdateInt = daysBetween(date1.getTime(),date2.getTime());
 	     
 	     
-	     Current_Priority = Current_Priority + currentdateInt;
+	     Current_Priority = Current_Priority - currentdateInt;
+	     if(Current_Priority < 1) {
+	    	 Current_Priority = 1;
+	     }
 	     
 	     System.out.println("Old Priority="+ Original_Priority);
 	     System.out.println("Plus "+currentdateInt);

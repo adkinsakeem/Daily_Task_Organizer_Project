@@ -59,7 +59,6 @@ public class AddTaskServletCheck extends HttpServlet {
 		
 		checkInputs();
 			setReqAtt(request);
-			System.out.println("Test 1");
 			//request.setAttribute("test", false);
 			
 			//request.getRequestDispatcher("/Daily_Tasks_Add.jsp").forward(request, response);
@@ -67,12 +66,10 @@ public class AddTaskServletCheck extends HttpServlet {
 			System.out.println("Priority =" + TPriority);
 			if(timeNumOK == false || timeRangeOK == false || dateNumOK == false || dateRangeOK == false 
 					|| titleLengthOK == false || descLengthOK == false || priorityNumOK == false) {
-				System.out.println("Test 2");
 					
 			RequestDispatcher RequetsDispatcherObj =request.getRequestDispatcher("/Daily_Tasks_Add.jsp");
 			RequetsDispatcherObj.forward(request, response);
 			}else {
-				System.out.println("Test 3");
 			Add_To_Database.Open_Local_SQL1_Database(TTitle, TDescription, TPriority, TTime, TDate, request, response);
 			
 	}

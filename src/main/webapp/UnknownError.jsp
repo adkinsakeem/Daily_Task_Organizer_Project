@@ -4,10 +4,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="CSSIndex.css">
 <title>Unknown Error</title>
 </head>
 <body>
-Error<br>
+<center>
+Error<br><br>
 ~Something went wrong and we are not sure what~
+<br>
+<br>
+ <INPUT TYPE="BUTTON" NAME="mainPage" onclick="javascript:window.location='http://localhost:8080/Daily_Task_Organizer/index.jsp	';" >
+
+<BUTTON type="button" name="back" ONCLICK="history.back()">Back</button>
+</center>
 </body>
 </html>

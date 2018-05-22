@@ -1,14 +1,16 @@
 @charset "ISO-8859-1";
 
 
-p.Title {
-	font-family: verdana;
-     font-size: 24px;
+p.Title1 {
+	 text-align: center;
+	font-family: lato, serif;
+     font-size: 48px;
 }
 
 
-p.Body {
-	font-family: verdana;
+p.Body1 {
+	 text-align: center;
+	font-family: lato, serif;
      font-size: 24px;
 }
 
@@ -26,5 +28,72 @@ p.Body {
   box-shadow: 0 9px #999;
 }
 
-.button:hover {background-color: #F9F9F9}
+.button:hover {
+	background-color: #F9F9F9
+	}
 
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+.active, .accordion:hover {
+    background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+    padding: 0 18px;
+    background-color: white;
+    display: none;
+    overflow: hidden;
+}
+
+#container {
+
+}
+
+
+#OpenedDate{
+	position: absolute;
+	left: 0%
+	text-aligh: left;
+	width:3in;
+	float:left;
+
+	
+	
+	}
+
+#DueDate{
+	position: absolute;
+	left: 33%;
+	width:3in;
+
+
+	
+
+
+}
+
+#CompletedDate{
+	position: absolute;
+	left: 66%; 
+	text-aligh: right;
+	width:3in;
+	float:right;
+
+
+}
+
+#Datescontainer{
+	
+
+	}

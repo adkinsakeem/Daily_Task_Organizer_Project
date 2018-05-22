@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="CSSIndex.css">
 
 <script>
 
@@ -11,10 +12,11 @@
         window.history.back()
     }
     </script>
-    
+
 <title>Error</title>
 </head>
 <body>
+<center>
 <%
 String errormessage = (String)request.getAttribute("errormessage");
 String error = (String)request.getAttribute("error");
@@ -32,6 +34,6 @@ Error<br>
 
 <BUTTON type="button" name="back" ONCLICK="history.back()">Back</button>
 
-
+</center>
 </body>
 </html>

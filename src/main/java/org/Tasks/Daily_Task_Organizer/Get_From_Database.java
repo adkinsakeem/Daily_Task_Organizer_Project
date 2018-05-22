@@ -88,12 +88,8 @@ public class Get_From_Database extends HttpServlet{
 			     request.setAttribute("error", error);
 			     request.setAttribute("errormessage", errormessage);
 			     RequestDispatcher RequetsDispatcherObj2 =request.getRequestDispatcher("/Error.jsp");
-					try {
 						RequetsDispatcherObj2.forward(request, response);
-					} catch (ServletException | IOException e1) {
-						// TODO Auto-generated catch block
-						request.getRequestDispatcher("/UnknownError.jsp");
-					}
+
 			}
 
 }

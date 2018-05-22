@@ -4,18 +4,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="CSSIndex.css">
 <title>Success_Page</title>
 </head>
-<body><p class="Title">
+<body>
+<center>
+<p class="Title1">
 SUCCESS
 </p>
 <br>
-<br>
+<p class="Body1">
 The Data was Successfully Uploaded to the Database
 <br>
 <br>
   <INPUT TYPE="BUTTON" NAME="backToMain" VALUE="Back To Main Page"  ONCLICK ="javascript:window.location='http://localhost:8080/Daily_Task_Organizer/index.jsp	';" >
-
-
+</p>
+</center>
 </body>
 </html>
