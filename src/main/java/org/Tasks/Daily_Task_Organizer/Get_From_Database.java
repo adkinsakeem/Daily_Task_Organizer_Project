@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class Get_From_Database extends HttpServlet{
+public class Get_From_Database extends HttpServlet {
 	
 	static String server = "jdbc:mysql://localhost:3306/dailyTasks?verifyServerCertificate=false&useSSL=true";
 	static String password = "";
@@ -71,6 +71,7 @@ public class Get_From_Database extends HttpServlet{
 			        Tasks.Actual_Completed_Date = rs.getDate("Actual_Completed_Date");
 			        Tasks.Actual_Completed_Time = rs.getTime("Actual_Completed_Time");
 			        Tasks.Completed_Y_N = rs.getBoolean("Completed_Y_N");
+			        Tasks.dateNum = rs.getInt("dateNum");
 			        Tasks.ID = rs.getInt("ID");
 			        
 			        TasksList.add(Tasks);
@@ -79,6 +80,8 @@ public class Get_From_Database extends HttpServlet{
 				
 				
 			      }
+			      
+			     // Collections.sort(TasksList, Task_Object.dateNum);
 				
 			} catch (SQLException|ClassNotFoundException e) {
 				// TODO Auto-generated catch block

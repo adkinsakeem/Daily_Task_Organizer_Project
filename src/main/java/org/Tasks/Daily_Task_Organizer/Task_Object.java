@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class Task_Object {
+public class Task_Object implements Comparable<Task_Object>{
 	
 	String Title;
 	String Description;
@@ -15,12 +15,15 @@ public class Task_Object {
 	static Date Opened_Date;
 	Time Opened_Time;
 	static Date Expected_Completed_Date;
-	Time Expected_Completed_Time;
+	static Time Expected_Completed_Time;
 	Date Actual_Completed_Date;
 	Time Actual_Completed_Time;
 	boolean Completed_Y_N;
 	int ID;
 	static int currentdateInt = 0;
+	static int dateNum = 1;
+	static int timeInt = 0;
+	
 	
 	
 	//Columns: 1-Title, 2-Description, 3-Original_Priority, 4-Current_Priority, 
@@ -47,10 +50,26 @@ public class Task_Object {
 	     currentdateInt = daysBetween(date1.getTime(),date2.getTime());
 	     
 	     
-	     Current_Priority = Current_Priority - currentdateInt;
+	     
+	     
+	    // Current_Priority = Current_Priority - currentdateInt;
+	     
+	     if(currentdateInt == 1) {
+	    	 Current_Priority = Current_Priority - 1;
+	     }else if(Current_Priority == 2) {
+	    	 Current_Priority = Current_Priority - 3;
+	     }else if(Current_Priority == 3) {
+	    	 Current_Priority = Current_Priority - 5;
+	     }else if(Current_Priority > 3) {
+	    	 Current_Priority = 1;
+	    	 dateNum = 1;
+	     }
+	     
 	     if(Current_Priority < 1) {
 	    	 Current_Priority = 1;
 	     }
+	     
+	     
 	     
 	     System.out.println("Old Priority="+ Original_Priority);
 	     System.out.println("Plus "+currentdateInt);
@@ -61,6 +80,7 @@ public class Task_Object {
     	
     	int dateDiff = 0;
     	dateDiff = (int)( (date2.getTime() - date1.getTime()) / (1000 * 60 * 60 * 24));
+    	System.out.println("Days Difference = " + dateDiff);
     	
     	if(dateDiff < 0) {
     		return 0;
@@ -68,7 +88,17 @@ public class Task_Object {
     		return dateDiff;
     	
     	}
+
+    	//timeInt.setTime(8, java.sql.Time.valueOf(Expected_Completed_Time));
+   
 }
+    
+    @Override
+    public int compareTo(Task_Object T_Object) {
+        // usually toString should not be used,
+        // instead one of the attributes or more in a comparator chain
+    	 return  (this.dateNum < ((Task_Object) T_Object).dateNum ? -1 : (this.dateNum == ((Task_Object) T_Object).dateNum ? 0 : 1));
+    }
 		
 		
 		

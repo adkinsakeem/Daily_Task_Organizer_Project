@@ -18,7 +18,7 @@
 &nbsp;
 &nbsp;
 &nbsp;
-<button class="button">View Tasks</button>
+<button class="button" onClick="location='http://localhost:8080/Daily_Task_Organizer/webapi/Display/'" >View Tasks</button>
 
 </center>
 

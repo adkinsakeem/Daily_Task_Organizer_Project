@@ -37,6 +37,8 @@ public class AddTaskServletCheck extends HttpServlet {
 	Boolean titleLengthOK = true;
 	Boolean descLengthOK = true;
 	
+	int dateNum = 0;
+	
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -70,7 +72,7 @@ public class AddTaskServletCheck extends HttpServlet {
 			RequestDispatcher RequetsDispatcherObj =request.getRequestDispatcher("/Daily_Tasks_Add.jsp");
 			RequetsDispatcherObj.forward(request, response);
 			}else {
-			Add_To_Database.Open_Local_SQL1_Database(TTitle, TDescription, TPriority, TTime, TDate, request, response);
+			Add_To_Database.Open_Local_SQL1_Database(TTitle, TDescription, TPriority, TTime, TDate, dateNum, request, response);
 			
 	}
 
@@ -117,6 +119,7 @@ public class AddTaskServletCheck extends HttpServlet {
 			if((tempHour > 0 && tempHour < 24) && (tempMinute >= 0 && tempMinute < 60) && (tempSecond >= 0 && tempSecond < 61)) {
 				
 				 TTime = (THour + ":" + TMinute + ":" + TSecond) ;
+				 dateNum = ((tempHour*10000)+(tempMinute*100)+tempSecond);
 				
 			}else {
 				timeRangeOK = false;
@@ -128,6 +131,9 @@ public class AddTaskServletCheck extends HttpServlet {
 				 TTime = "23:59:59";
 				timeNumOK = true;
 				timeRangeOK = true;
+				dateNum = 235959;
+				
+				
 			}else{
 			timeNumOK = false;
 

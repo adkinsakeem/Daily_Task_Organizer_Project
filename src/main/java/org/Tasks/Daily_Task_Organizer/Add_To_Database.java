@@ -38,7 +38,7 @@ public class Add_To_Database extends AddTaskServletCheck{
 					//9-Actual_Completed_Date, 10-Actual_Completed_Time, 11-Completed_Y_N, 12-ID
 
 	public static void Open_Local_SQL1_Database(String TTitle, String TDescription, 
-			String TPriority, String TTime, String TDate, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			String TPriority, String TTime, String TDate, int dateNum, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated constructor stub
 
 	try {
@@ -47,7 +47,7 @@ public class Add_To_Database extends AddTaskServletCheck{
 			Class.forName("com.mysql.cj.jdbc.Driver"); 
 			Connection con = DriverManager.getConnection(server,PCName,password);
 			PreparedStatement statement = (PreparedStatement) con.prepareStatement
-					("INSERT INTO Daily_Tasks_01(Title, Description, Original_Priority, Current_Priority, Opened_Date, Opened_Time, Expected_Completed_Date, Expected_Completed_Time, Completed_Y_N)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+					("INSERT INTO Daily_Tasks_01(Title, Description, Original_Priority, Current_Priority, Opened_Date, Opened_Time, Expected_Completed_Date, Expected_Completed_Time, dateNum, Completed_Y_N)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			statement.setString(1, TTitle);
 			statement.setString(2, TDescription);
 			statement.setInt(3, Integer.parseInt(TPriority));
@@ -57,6 +57,7 @@ public class Add_To_Database extends AddTaskServletCheck{
 			statement.setDate(7, (Date) SQLDate);
 			statement.setTime(8, java.sql.Time.valueOf(TTime));
 			statement.setBoolean(9, false);
+			statement.setInt(10, (dateNum));
 			statement.execute();
 			statement.close();
 			con.close();
