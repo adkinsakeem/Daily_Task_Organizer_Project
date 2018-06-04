@@ -16,8 +16,8 @@ public class Task_Object implements Comparable<Task_Object>{
 	Time Opened_Time;
 	static Date Expected_Completed_Date;
 	static Time Expected_Completed_Time;
-	Date Actual_Completed_Date;
-	Time Actual_Completed_Time;
+	 java.util.Date Actual_Completed_Date;
+	 java.util.Date Actual_Completed_Time;
 	boolean Completed_Y_N;
 	int ID;
 	static int currentdateInt = 0;
@@ -35,21 +35,22 @@ public class Task_Object implements Comparable<Task_Object>{
 	
 	public static void Get_CurrentPriority() {
 		// TODO Auto-generated constructor stub
-		
-		Calendar date1 = new GregorianCalendar();
-	    Calendar date2 = new GregorianCalendar();
-
+		System.out.println(Expected_Completed_Date);
+		java.util.Date date1 = new java.util.Date();
+		java.util.Date date2 = new java.util.Date();
+	    System.out.println("CTest2");
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 
-	     date1.setTime(Expected_Completed_Date);
-
-	     Date Tempdate = (Date) Calendar.getInstance().getTime();
-	 	date2.setTime(Tempdate);
-			
+	     date1 = (Expected_Completed_Date);
+	     System.out.println("EXPECTED COMPLETED TIME: " + date1);
+	     java.util.Date Tempdate = new java.util.Date();
+	     System.out.println("CTest3.1");
+	 	date2 = (Tempdate);
+	 	System.out.println("Todays Date: " + date2);
 
 	     currentdateInt = daysBetween(date1.getTime(),date2.getTime());
 	     
-	     
+	     System.out.println("CTest4");
 	     
 	     
 	    // Current_Priority = Current_Priority - currentdateInt;
@@ -76,10 +77,10 @@ public class Task_Object implements Comparable<Task_Object>{
 	     System.out.println("New Priority="+ Current_Priority);
 	}
 	
-    public static int daysBetween(java.util.Date date1, java.util.Date date2){
+    public static int daysBetween(long date1, long date2){
     	
     	int dateDiff = 0;
-    	dateDiff = (int)( (date2.getTime() - date1.getTime()) / (1000 * 60 * 60 * 24));
+    	dateDiff = (int)( (date2 - date1) / (1000 * 60 * 60 * 24));
     	System.out.println("Days Difference = " + dateDiff);
     	
     	if(dateDiff < 0) {

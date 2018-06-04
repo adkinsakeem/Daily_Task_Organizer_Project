@@ -14,13 +14,20 @@
 <br><br><br><br>
 <h2>Add A Task or View Tasks</h2>
 <br><br>
+
+<form method="post" action="/Daily_Task_Organizer/Display2">
 <button class="button" onClick="location='http://localhost:8080/Daily_Task_Organizer/Daily_Tasks_Add.jsp'" >Add Tasks</button>
 &nbsp;
 &nbsp;
-&nbsp;
-<button class="button" onClick="location='http://localhost:8080/Daily_Task_Organizer/webapi/Display/'" >View Tasks</button>
+
+<%-- <button class="button" onClick="<callGetDB();>" >View Tasks</button> --%>
+
+ <INPUT TYPE="SUBMIT" NAME="submit" VALUE="View Tasks">
+</form>
 
 </center>
+
+
 
 
 </body>

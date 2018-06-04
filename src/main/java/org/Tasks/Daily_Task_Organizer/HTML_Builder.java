@@ -6,9 +6,7 @@ static String To_Title;
 static String To_Head;
 
 protected static String H_Builder() {
-	To_Title = ("\r\n" + 
-			"<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\r\n" + 
-			"<html>\r\n" + 
+	To_Title = ("<html>\r\n" + 
 			"<title>\r\n" + 
 			"\r\n" + 
 			"</title>");
