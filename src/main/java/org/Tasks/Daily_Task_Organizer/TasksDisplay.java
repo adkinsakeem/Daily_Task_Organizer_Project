@@ -22,32 +22,23 @@ public class TasksDisplay extends Get_From_Database{
 		
 
 	}
-	@Path("/Display3")
-	@GET
-	@Produces(MediaType.TEXT_HTML)
+
 	public static String Build_HTML() {
-		System.out.println("Test14");
 		String FullHTML = HTML_Builder.H_Builder();
 		StringBuilder HTMLBuilder = new StringBuilder();
 		HTMLBuilder.append(FullHTML);
 		HTMLBuilder.append("<body><center><h2>TASKS</h2> </center>");
-		System.out.println("Test15");
 		 int TaskObjNum = TasksList.size();
 		 HTMLBuilder.append("Test");
-		 System.out.println("Test16");
 		 //Round of Changing Priority
 		 for(int num1 = 0;num1<TaskObjNum;num1++) {
-			 System.out.println("Test16.1");
 			 TasksList.get(num1).Current_Priority = TasksList.get(num1).Original_Priority;
-			 System.out.println("Test16.2");
 			 TasksList.get(num1).Get_CurrentPriority();
 			 System.out.println("Expected Time No "+ num1 + ": " +  TasksList.get(num1).Expected_Completed_Date);
 		 }
 		 
-		 System.out.println("Test17");
 		// Round of Displaying code thru HTML
 		 for(int num1 = 0;num1<TaskObjNum;num1++) {
-			 System.out.println("Test18");
 			 TasksList.get(num1).Current_Priority = TasksList.get(num1).Original_Priority;
 			 TasksList.get(num1).Get_CurrentPriority();
 		 

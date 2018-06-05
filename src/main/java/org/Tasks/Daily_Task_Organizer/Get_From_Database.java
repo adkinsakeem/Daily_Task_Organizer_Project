@@ -1,7 +1,7 @@
 package org.Tasks.Daily_Task_Organizer;
 
 import java.io.IOException;
-
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -41,6 +41,7 @@ public class Get_From_Database extends HttpServlet {
 	static String error = "1";
 	static String errormessage = " ";
 	static ArrayList<Task_Object> TasksList = new ArrayList();
+	static String FullFinalHTML = "";
 
 	//String databaseName = "STORESQL";
 	
@@ -50,35 +51,27 @@ public class Get_From_Database extends HttpServlet {
 		//5- Opened_Date, 6-Opened_Time, 7-Expected_Completed_Date, 8-Expected_Completed_Time, 
 			//9-Actual_Completed_Date, 10-Actual_Completed_Time, 11-Completed_Y_N, 12-ID
 
-	@POST
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated constructor stub
-		System.out.println("Test01");
-
 
 
 			try {
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				Connection con = DriverManager.getConnection(server,PCName,password);
-				System.out.println("Test02");
 				 String query = "SELECT * FROM daily_tasks_01";
-				 System.out.println("Test03");
 			      // create the java statement
 			      Statement State = con.createStatement();
-			      System.out.println("Test04");
 			      // execute the query, and get a java resultset
 			      ResultSet rs = State.executeQuery(query);
-			      System.out.println("Test05");
 			      // iterate through the java resultset
 			    //  TasksList = Collections.emptyList();
-			      System.out.println("Test06");
 			      int listNum = 0;
 			      while (rs.next())
 			      {
 			    	  
-			    	  System.out.println("Test07");
 			    	Task_Object Tasks = new Task_Object();
-			    	 System.out.println("Test08");
+
 			    	Tasks.Title = rs.getString("Title");
 			       Tasks.Description = rs.getString("Description");
 			        Tasks.Original_Priority = rs.getInt("Original_Priority");
@@ -97,14 +90,20 @@ public class Get_From_Database extends HttpServlet {
 			        System.out.println("Second " +  TasksList.get(listNum).Expected_Completed_Date);
 			        listNum++;
 			        System.out.println("Test11");
+			        
 				
 			      }
 			      System.out.println("Test12");
 			     // Collections.sort(TasksList, Task_Object.dateNum);
-			      TasksDisplay.Build_HTML();
+			      FullFinalHTML = TasksDisplay.Build_HTML();
 			      //RequestDispatcher RequetsDispatcherSuccess =request.getRequestDispatcher("/Display3");
 			      //RequetsDispatcherSuccess.forward(request, response);
-			      System.out.println("Test13");
+
+			      
+			      response.setContentType("text/html");
+			      PrintWriter out = response.getWriter();
+			      out.println(FullFinalHTML);
+			      
 				
 			} catch (SQLException|ClassNotFoundException e) {
 				// TODO Auto-generated catch block
@@ -119,4 +118,6 @@ public class Get_From_Database extends HttpServlet {
 			}
 
 }
+
+
 }

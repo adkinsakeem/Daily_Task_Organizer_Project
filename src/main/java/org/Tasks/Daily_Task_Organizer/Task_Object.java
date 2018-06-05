@@ -35,22 +35,18 @@ public class Task_Object implements Comparable<Task_Object>{
 	
 	public static void Get_CurrentPriority() {
 		// TODO Auto-generated constructor stub
-		System.out.println(Expected_Completed_Date);
 		java.util.Date date1 = new java.util.Date();
 		java.util.Date date2 = new java.util.Date();
-	    System.out.println("CTest2");
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 
 	     date1 = (Expected_Completed_Date);
 	     System.out.println("EXPECTED COMPLETED TIME: " + date1);
 	     java.util.Date Tempdate = new java.util.Date();
-	     System.out.println("CTest3.1");
 	 	date2 = (Tempdate);
 	 	System.out.println("Todays Date: " + date2);
 
 	     currentdateInt = daysBetween(date1.getTime(),date2.getTime());
 	     
-	     System.out.println("CTest4");
 	     
 	     
 	    // Current_Priority = Current_Priority - currentdateInt;
