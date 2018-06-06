@@ -10,18 +10,18 @@ public class Task_Object implements Comparable<Task_Object>{
 	
 	String Title;
 	String Description;
-	static int Original_Priority;
-	static int Current_Priority;
-	static Date Opened_Date;
+	int Original_Priority;
+	int Current_Priority;
+	 Date Opened_Date;
 	Time Opened_Time;
-	static Date Expected_Completed_Date;
-	static Time Expected_Completed_Time;
+	Date Expected_Completed_Date;
+	 Time Expected_Completed_Time;
 	 java.util.Date Actual_Completed_Date;
 	 java.util.Date Actual_Completed_Time;
 	boolean Completed_Y_N;
 	int ID;
 	static int currentdateInt = 0;
-	static int dateNum = 1;
+	 int dateNum = 1;
 	static int timeInt = 0;
 	
 	
@@ -33,7 +33,7 @@ public class Task_Object implements Comparable<Task_Object>{
 	
 	
 	
-	public static void Get_CurrentPriority() {
+	public void Get_CurrentPriority() {
 		// TODO Auto-generated constructor stub
 		java.util.Date date1 = new java.util.Date();
 		java.util.Date date2 = new java.util.Date();
@@ -51,13 +51,13 @@ public class Task_Object implements Comparable<Task_Object>{
 	     
 	    // Current_Priority = Current_Priority - currentdateInt;
 	     
-	     if(currentdateInt == 1) {
+	     if(currentdateInt == -1) {
 	    	 Current_Priority = Current_Priority - 1;
-	     }else if(Current_Priority == 2) {
+	     }else if(currentdateInt == -2) {
 	    	 Current_Priority = Current_Priority - 3;
-	     }else if(Current_Priority == 3) {
+	     }else if(currentdateInt == -3) {
 	    	 Current_Priority = Current_Priority - 5;
-	     }else if(Current_Priority > 3) {
+	     }else if(currentdateInt < -3) {
 	    	 Current_Priority = 1;
 	    	 dateNum = 1;
 	     }
@@ -76,15 +76,13 @@ public class Task_Object implements Comparable<Task_Object>{
     public static int daysBetween(long date1, long date2){
     	
     	int dateDiff = 0;
-    	dateDiff = (int)( (date2 - date1) / (1000 * 60 * 60 * 24));
+    	dateDiff = (int)( (date1 - date2) / (1000 * 60 * 60 * 24));
     	System.out.println("Days Difference = " + dateDiff);
+    	System.out.println("Real Difference = " + (date2 - date1));
     	
-    	if(dateDiff < 0) {
-    		return 0;
-    	}else {
+   
     		return dateDiff;
     	
-    	}
 
     	//timeInt.setTime(8, java.sql.Time.valueOf(Expected_Completed_Time));
    

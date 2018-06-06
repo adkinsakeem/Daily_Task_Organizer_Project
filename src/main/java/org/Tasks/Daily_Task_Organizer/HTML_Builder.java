@@ -2,6 +2,10 @@ package org.Tasks.Daily_Task_Organizer;
 
 public class HTML_Builder extends TasksDisplay {
 	
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 static String To_Title;
 static String To_Head;
 
